@@ -1,0 +1,45 @@
+version: "3.8"
+
+services:
+  # FastAPI app service
+  app:
+    build: .
+    container_name: fastapi-app
+    ports:
+      - "8000:8000"
+    environment:
+      - DB_USER=postgres
+      - DB_PASSWORD=123456
+      - DB_HOST=localhost
+      - DB_PORT=5432
+      - DB_NAME=car_insurance
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+    networks:
+      - app-network
+
+  # PostgreSQL service
+  db:
+    image: postgres:16
+    container_name: car_insurance_database
+    environment:
+      POSTGRES_DB: car_insurance
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+# Persistent volume for PostgreSQL data
+volumes:
+  postgres_data:
+
+# Define a custom network
+networks:
+  app-network:
+    driver: bridge

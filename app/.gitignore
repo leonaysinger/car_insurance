@@ -1,0 +1,19 @@
+# Python bytecode files
+*.pyc
+*.pyo
+__pycache__/
+
+# Virtual environments
+.venv/
+.env
+
+# IDE specific files
+.vscode/
+.idea/
+
+# Docker files
+*.log
+docker-compose.override.yml
+
+# Alembic migrations
+alembic/versions/
