@@ -9,5 +9,4 @@ class Policy(BaseModel):
     registration_location: Optional[str] = None
 
     def update_broker_fee(self, new_fee: float):
-        """Example method to update broker fee as part of the policy lifecycle"""
         self.broker_fee = new_fee

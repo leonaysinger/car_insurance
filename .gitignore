@@ -17,3 +17,7 @@ docker-compose.override.yml
 
 # Alembic migrations
 alembic/versions/
+
+# Tests
+htmlcov/
+.coverage

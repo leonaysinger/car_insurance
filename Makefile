@@ -42,3 +42,6 @@ build:
 ps:
 	@echo "Showing running Docker Compose services..."
 	$(DOCKER_COMPOSE) -f $(DOCKER_COMPOSE_FILE) ps
+
+test-coverage:
+	pytest --cov=app --cov-report=term --cov-report=html

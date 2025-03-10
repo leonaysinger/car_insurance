@@ -1,7 +1,7 @@
-from fastapi import HTTPException
+from fastapi import APIRouter, HTTPException
 
 from app.core.aggregate.premium import Premium
-from app.core.dto.dtos import CarDetails, PremiumResponse
+from app.core.dto.dtos import PremiumResponse, CarDetails
 from app.core.entities.car import Car
 from app.core.entities.policy import Policy
 from app.core.value_objects.deductible import Deductible
@@ -9,8 +9,10 @@ from app.core.value_objects.location import Location
 from app.core.value_objects.policy_limit import PolicyLimit
 from app.core.value_objects.rate import Rate
 
+router = APIRouter()
 
-def calculate_premium(car_details: CarDetails):
+@router.post("/calculate-premium/", response_model=PremiumResponse)
+async def calculate_premium(car_details: CarDetails):
     try:
         car = Car(make=car_details.make, model=car_details.model, year=car_details.year, value=car_details.value)
         policy = Policy(deductible_percentage=car_details.deductible_percentage, broker_fee=car_details.broker_fee,
