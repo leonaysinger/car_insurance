@@ -10,7 +10,7 @@ from app.core.value_objects.policy_limit import PolicyLimit
 from app.core.value_objects.rate import Rate
 
 
-def calculate_premium(car_details: CarDetails):
+def calculate_premium_data(car_details: CarDetails):
     try:
         car = Car(make=car_details.make, model=car_details.model, year=car_details.year, value=car_details.value)
         policy = Policy(deductible_percentage=car_details.deductible_percentage, broker_fee=car_details.broker_fee,
