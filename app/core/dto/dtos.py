@@ -26,6 +26,7 @@ class CarDetails(BaseModel):
 
 
 class PremiumResponse(BaseModel):
+    car_details: CarDetails
     applied_rate: float
     policy_limit: float
     calculated_premium: float

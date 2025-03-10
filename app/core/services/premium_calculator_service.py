@@ -32,6 +32,7 @@ def calculate_premium_data(car_details: CarDetails):
         deductible_value = policy_limit_calculator.calculate_policy_limit() * policy.deductible_percentage
 
         return PremiumResponse(
+            car_details=car_details,
             applied_rate=premium_calculator.calculate_rate(),
             policy_limit=final_policy_limit,
             calculated_premium=calculated_premium,
