@@ -4,6 +4,11 @@ FROM python:3.10-slim
 # Set the working directory inside the container
 WORKDIR /app
 
+# Set environment variable
+ENV CAR_VALUE_LIMIT_CALCULATION=10000
+ENV CAR_YEAR_RATE=0.5
+ENV CAR_VALUE_RATE=0.5
+
 # Copy only the requirements file first for better caching
 COPY requirements.txt .
 

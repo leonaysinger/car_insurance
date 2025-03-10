@@ -15,8 +15,6 @@ services:
       - DB_NAME=car_insurance
     depends_on:
       - db
-    volumes:
-      - .:/app
     networks:
       - app-network
 

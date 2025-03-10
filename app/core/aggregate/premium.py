@@ -1,3 +1,5 @@
+import os
+
 from datetime import datetime
 from typing import Optional
 
@@ -16,7 +18,7 @@ class Premium:
         self.rate = rate
         self.deductible = deductible
         self.location = location
-        self.limit_value_car_price = 10000
+        self.limit_value_car_price = float(os.getenv("CAR_VALUE_LIMIT_CALCULATION", 10000))
 
     def calculate_premium(self) -> float:
         applied_rate = self.calculate_rate()
@@ -30,8 +32,10 @@ class Premium:
 
     def calculate_rate(self) -> float:
         current_year = datetime.now().year
-        age_rate = (current_year - self.car.year) * 0.5 / 100
-        value_rate = (self.car.value / self.limit_value_car_price) * 0.5 / 100
+        car_year_rate = float(os.getenv("CAR_YEAR_RATE", 0.5))
+        car_value_rate = float(os.getenv("CAR_VALUE_RATE", 0.5))
+        age_rate = (current_year - self.car.year) * car_year_rate / 100
+        value_rate = (self.car.value / self.limit_value_car_price) * car_value_rate / 100
         rate = Rate(age_rate, value_rate)
 
         if self.location:
